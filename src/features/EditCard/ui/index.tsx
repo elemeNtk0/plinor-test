@@ -1,16 +1,25 @@
-import React, { useState } from "react";
-import { MdAdd, MdCreate } from "react-icons/md";
+import { FC, useState } from "react";
+import { MdCreate, MdEdit } from "react-icons/md";
 import { Button } from "~/shared/ui/button";
 import { Input } from "~/shared/ui/input";
 import { Modal } from "~/shared/ui/modal";
 import { SubmitHandler, useForm } from "react-hook-form";
-import styles from "./add-card.module.sass";
 import { ValidationSchema, ValidationType } from "./validation-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CardSize, addCard } from "~/entities/card";
+import { $cards, CardSize, updateCard } from "~/entities/card";
+import { useUnit } from "effector-react";
 
-export const AddCard: React.FC = () => {
+import styles from "./EditCard.module.sass";
+
+interface IEditCardPropsType {
+  id: string;
+}
+
+export const EditCard: FC<IEditCardPropsType> = ({ id }) => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  const cards = useUnit($cards);
+  const selectedCard = cards.find((card) => card.id === id);
 
   const {
     register,
@@ -18,10 +27,16 @@ export const AddCard: React.FC = () => {
     formState: { errors },
   } = useForm<ValidationType>({
     resolver: zodResolver(ValidationSchema),
+    values: {
+      title: selectedCard?.title ?? "",
+      description: selectedCard?.description ?? "",
+      size: selectedCard?.size ?? 3,
+    },
   });
 
   const onSubmit: SubmitHandler<ValidationType> = ({ size, ...form }) => {
-    addCard({
+    updateCard({
+      id,
       size: Number(size) as CardSize,
       ...form,
     });
@@ -30,14 +45,14 @@ export const AddCard: React.FC = () => {
 
   return (
     <>
-      <Button left={<MdAdd />} onClick={() => setModalOpen(true)}>
-        Добавить карточку
+      <Button left={<MdEdit />} onClick={() => setModalOpen(true)}>
+        Изменить карточку
       </Button>
 
       <Modal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        title="Создание карточки"
+        title="Изменить карточку"
         className={styles.modal}
       >
         <Input
@@ -67,7 +82,7 @@ export const AddCard: React.FC = () => {
           {...register("size")}
         />
         <Button left={<MdCreate />} onClick={handleSubmit(onSubmit)}>
-          Создать
+          Изменить
         </Button>
       </Modal>
     </>

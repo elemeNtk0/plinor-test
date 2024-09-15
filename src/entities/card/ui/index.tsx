@@ -1,18 +1,18 @@
-import React, { CSSProperties, PropsWithChildren } from "react";
+import  { CSSProperties, FC, PropsWithChildren } from "react";
 import styles from "./card.module.sass";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { CardSize } from "../types";
 import { MdMenu } from "react-icons/md";
 
-interface ICardProps extends PropsWithChildren {
+interface ICardPropsType extends PropsWithChildren {
   id: string;
   title: string;
   description: string;
   size: CardSize;
 }
 
-export const Card: React.FC<ICardProps> = ({
+export const Card: FC<ICardPropsType> = ({
   id,
   title,
   description,

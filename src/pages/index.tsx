@@ -1,9 +1,6 @@
-import React from "react";
-import { MainPage } from "./main-page";
+import { FC } from "react";
+import { MainPage } from "./MainPage";
 
-// допустим тут роутинг
-export const Routing: React.FC = () => {
-  return (
-    <MainPage />
-  );
+export const Routing: FC = () => {
+  return <MainPage />;
 };

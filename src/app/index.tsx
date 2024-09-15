@@ -1,10 +1,8 @@
-import './styles/index.sass';
+import { FC } from "react";
+import { Routing } from "~/pages";
 
-import React from "react";
-import { Routing } from '~/pages';
+import "./styles/index.sass";
 
-export const App: React.FC = () => {
-  return (
-    <Routing />
-  );
+export const App: FC = () => {
+  return <Routing />;
 };

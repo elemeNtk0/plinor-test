@@ -1,12 +1,13 @@
+import { FC } from 'react'
 import { MdDelete } from "react-icons/md";
 import { deleteCard } from "~/entities/card";
 import { Button } from "~/shared/ui/button";
 
-interface IDeleteCardProps {
+interface IDeleteCardPropsType {
   id: string;
 }
 
-export const DeleteCard: React.FC<IDeleteCardProps> = ({
+export const DeleteCard: FC<IDeleteCardPropsType> = ({
   id
 }) => {
   const onDelete = () => {

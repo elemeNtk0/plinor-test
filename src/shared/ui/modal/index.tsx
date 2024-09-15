@@ -1,16 +1,16 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren, FC } from "react";
 import { Dialog } from "@headlessui/react";
 import cn from "classnames";
 import styles from "./modal.module.sass";
 
-export interface IModalProps extends PropsWithChildren {
+export interface IModalPropsType extends PropsWithChildren {
   isOpen: boolean;
   onClose: () => unknown;
   title?: string;
   className?: string;
 }
 
-export const Modal: React.FC<IModalProps> = ({
+export const Modal: FC<IModalPropsType> = ({
   isOpen,
   onClose,
   children,

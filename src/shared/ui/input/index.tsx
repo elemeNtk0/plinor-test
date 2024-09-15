@@ -1,12 +1,12 @@
 import React, { forwardRef } from "react";
 import styles from "./input.module.sass";
 
-interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface IInputPropsType extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
 }
 
-export const Input = forwardRef<HTMLInputElement, IInputProps>(
+export const Input = forwardRef<HTMLInputElement, IInputPropsType>(
   ({ label, error, ...rest }, ref) => {
     return (
       <div className={styles.InputWrap}>

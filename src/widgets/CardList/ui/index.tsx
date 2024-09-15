@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import {
   DndContext,
   closestCenter,
@@ -13,14 +13,14 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import styles from "./card-list.module.sass";
+import styles from "./CardList.module.sass";
 import { Card } from "~/entities/card/ui";
 import { useUnit } from "effector-react";
 import { $cards, moveCards } from "~/entities/card";
-import { EditCard } from "~/features/edit-card";
-import { DeleteCard } from "~/features/delete-card";
+import { EditCard } from "~/features/EditCard";
+import { DeleteCard } from "~/features/DeleteCard";
 
-export const CardList: React.FC = () => {
+export const CardList: FC = () => {
   const cards = useUnit($cards);
 
   const sensors = useSensors(
